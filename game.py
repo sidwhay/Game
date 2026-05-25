@@ -1,5 +1,5 @@
 import pygame
-from player import WIN_WIDTH, WIN_HEIGHT
+from const import WIN_WIDTH, WIN_HEIGHT
 
 class Game:
     def __init__(self):

@@ -9,14 +9,14 @@ class Menu:
 
  def __init__(self,window):
      self.window = window
-     self.surf = pygame.image.load ("./assets/teste.png")
+     self.surf = pygame.image.load ("./assets/teste.png").convert_alpha()
      self.rect = self.surf.get_rect()
 
 
 
  def run(self):
     menu_option = 0
-    pygame.mixer.music.load('./assets/bg.mp3')
+    pygame.mixer.music.load('./Assets/bg.mp3')
     pygame.mixer.music.play(-1)
     while True:
 
@@ -37,9 +37,7 @@ class Menu:
 
 
       for events in pygame.event.get():
-        if events.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+
         if events.type == pygame.KEYDOWN:
            if events.key == pygame.K_DOWN:
                if menu_option < len(MENU_OPTION) - 1:

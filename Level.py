@@ -1,5 +1,7 @@
 import pygame
+from pygame import display
 
+from Const import COLOR_BLACK
 from Entity import Entity
 from Factory import Factory
 
@@ -11,17 +13,37 @@ class Level:
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
         self.entity_list.extend(Factory.get_entity('bg'))
+        self.entity_list.append(Factory.get_entity('Player1'))
 
 
 
 
 
+    def run(self):
+        pygame.mixer_music.load(f'./Assets/bg.mp3')
+        pygame.mixer_music.play(-1)
+        clock = pygame.time.Clock()
+
+        while True:
+
+         clock.tick(60)
+         for event in pygame.event.get():
+             if event.type == pygame.QUIT:
+                 pygame.quit()
+                 quit()
+             if event.type == pygame.KEYDOWN:
+               if event.key == pygame.K_ESCAPE:
+                 return
+
+         self.window.fill(COLOR_BLACK)
+
+         for ent in self.entity_list:
+             self.window.blit(source=ent.surf, dest=ent.rect)
+         pygame.display.flip()
 
 
-    def run (self):
-      while True:
-          for ent in self.entity_list:
-              self.window.blit(source=ent.surf, rect=ent.rect)
-          pygame.display.flip()
 
-    pass
+            #for ent in self.entity_list:
+             #   self.window.blit(source=ent.surf, rect=ent.rect)
+           # pygame.display.flip()
+        #pass

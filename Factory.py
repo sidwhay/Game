@@ -1,5 +1,6 @@
 from Background import Background
 from Const import WIN_WIDTH
+from Enemy import Boss
 from Player import Player
 
 
@@ -15,9 +16,9 @@ class Factory:
 
                 return list_bg
             case 'Player1':
-                return Player('player1', (80, WIN_WIDTH),)
+                return Player('player1', (130, 533))
             case 'Player2':
-                return Player('spriteboss1', (100, WIN_WIDTH), )
+                return Boss('spriteboss1', (750, 433))
 
 
         return None

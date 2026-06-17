@@ -12,8 +12,10 @@ class Level:
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
-        #self.entity_list.extend(Factory.get_entity('bg'))
+        self.entity_list.extend(Factory.get_entity('bg'))
+
         self.entity_list.append(Factory.get_entity('Player1'))
+
         if game_mode in [MENU_OPTION[0], MENU_OPTION[1]]:
             self.entity_list.append(Factory.get_entity('Player2'))
 

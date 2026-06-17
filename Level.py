@@ -1,11 +1,11 @@
 import pygame
-from pygame import display
 
-from Assets.Teste import jogo_jankenpo
+
+
 from Const import COLOR_BLACK, MENU_OPTION
 from Entity import Entity
 from Factory import Factory
-
+from jankenpo import jankenpo_game
 
 class Level:
     def __init__(self, window, name, game_mode):
@@ -13,12 +13,8 @@ class Level:
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
-        self.entity_list.extend(Factory.get_entity('bg'))
-        jogo_jankenpo()
-        self.entity_list.append(Factory.get_entity('Player1'))
 
-        if game_mode in [MENU_OPTION[0], MENU_OPTION[1]]:
-            self.entity_list.append(Factory.get_entity('Player2'))
+        jankenpo_game()
 
 
 
@@ -35,9 +31,11 @@ class Level:
              if event.type == pygame.QUIT:
                  pygame.quit()
                  quit()
-             if event.type == pygame.KEYDOWN:
-               if event.key == pygame.K_ESCAPE:
-                 return
+             elif event.key == pygame.K_DOWN:
+                 resultado = jankenpo_game()
+                 if resultado == "menu":
+                     pass
+
 
          self.window.fill(COLOR_BLACK)
 

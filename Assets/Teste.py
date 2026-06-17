@@ -8,7 +8,7 @@ from Factory import Factory
 
 pygame.init()
 
-Fundo = image
+fundo = pygame.image.load('./Assets/bg0.png')
 
 # Configurações da janela
 largura, altura = 600, 400
@@ -44,8 +44,8 @@ def jogo_jankenpo():
     mensagem = ""
 
     while rodando:
-        pygame.image.load('./Assets/''bg0.png')
-        pygame.display.flip()
+
+        janela.blit(fundo, (0,0 ))
 
         # Instruções na tela
         desenhar_texto("Pressione A para Pedra", PRETO, 50, 250)

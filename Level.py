@@ -1,7 +1,7 @@
 import pygame
 from pygame import display
 
-from Const import COLOR_BLACK, MENU_OPTION
+from Const import COLOR_BLACK
 from Entity import Entity
 from Factory import Factory
 
@@ -13,12 +13,12 @@ class Level:
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
         self.entity_list.extend(Factory.get_entity('bg'))
+        self.entity_list.append(Factory.get_entity('Player1'))
 
         self.entity_list.append(Factory.get_entity('Player1'))
 
         if game_mode in [MENU_OPTION[0], MENU_OPTION[1]]:
             self.entity_list.append(Factory.get_entity('Player2'))
-
 
 
 

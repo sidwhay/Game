@@ -11,7 +11,7 @@ COLOR_GRAY = (128, 128, 128)
 
 # M
 MENU_OPTION = ('Jogar',
-               'Pontos',
+               'Versus',
                'Sair')
 
 # W

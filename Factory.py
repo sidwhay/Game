@@ -12,6 +12,7 @@ class Factory:
                 list_bg = []
                 for i in range(1):
                     list_bg.append(Background(f'bg{i}', (0, 0)))
+
                 return list_bg
             case 'Player1':
                 return Player('player1', (80, WIN_WIDTH),)

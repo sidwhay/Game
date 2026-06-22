@@ -11,9 +11,9 @@ COLOR_GRAY = (128, 128, 128)
 
 # M
 MENU_OPTION = ('Jogar',
-               'Versus',
+               'Controles',
                'Sair')
 
 # W
-WIN_WIDTH = 800
-WIN_HEIGHT = 600
+WIN_WIDTH = 1044
+WIN_HEIGHT =673

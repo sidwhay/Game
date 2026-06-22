@@ -1,78 +1,55 @@
 import pygame
-import random
-import sys
-
-from Const import MENU_OPTION
-from Entity import Entity
-from Factory import Factory
+import math
 
 pygame.init()
 
-fundo = pygame.image.load('./Assets/bg0.png')
+# Configurações da tela
+largura, altura = 800, 600
+tela = pygame.display.set_mode((largura, altura))
+pygame.display.set_caption("Texto Flutuante")
 
-# Configurações da janela
-largura, altura = 600, 400
-janela = pygame.display.set_mode((largura, altura))
-pygame.display.set_caption("Jan Ken Pô")
+def tela_texto_flutuante(mensagem: str, callback=None):
+    """
+    Exibe uma tela com texto flutuante.
+    Se o jogador apertar Enter, chama a função 'callback'.
+    """
+    fonte = pygame.font.SysFont("arialblack", 60)
+    texto = fonte.render(mensagem, True, (255, 255, 255))
 
-# Cores
-BRANCO = (255, 255, 255)
-PRETO = (0, 0, 0)
+    x = largura // 2
+    y_base = altura // 2
+    angulo = 0
 
-# Fonte
-fonte = pygame.font.SysFont(None, 40)
-
-# Opções
-opcoes = ["pedra", "papel", "tesoura"]
-
-def desenhar_texto(texto, cor, x, y):
-    img = fonte.render(texto, True, cor)
-    janela.blit(img, (x, y))
-
-def resultado(usuario, computador):
-    if usuario == computador:
-        return "Empate!"
-    elif (usuario == "pedra" and computador == "tesoura") or \
-         (usuario == "papel" and computador == "pedra") or \
-         (usuario == "tesoura" and computador == "papel"):
-        return "Você venceu!"
-    else:
-        return "Você perdeu!"
-
-def jogo_jankenpo():
+    clock = pygame.time.Clock()
     rodando = True
-    mensagem = ""
 
     while rodando:
-
-        janela.blit(fundo, (0,0 ))
-
-        # Instruções na tela
-        desenhar_texto("Pressione A para Pedra", PRETO, 50, 250)
-        desenhar_texto("Pressione S para Papel", PRETO, 50, 300)
-        desenhar_texto("Pressione D para Tesoura", PRETO, 50, 350)
-
-        # Mensagem de resultado
-        desenhar_texto(mensagem, PRETO, 50, 100)
-
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                rodando = False
                 pygame.quit()
-                sys.exit()
-            if evento.type == pygame.KEYDOWN:
-                if evento.key == pygame.K_a:
-                    escolha_usuario = "pedra"
-                elif evento.key == pygame.K_s:
-                    escolha_usuario = "papel"
-                elif evento.key == pygame.K_d:
-                    escolha_usuario = "tesoura"
-                else:
-                    escolha_usuario = None
+                exit()
+            elif evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_RETURN:
+                    if callback:   # se foi passada uma função
+                        callback()
+                    rodando = False
 
-                if escolha_usuario:
-                    escolha_computador = random.choice(opcoes)
-                    mensagem = f"PC: {escolha_computador} | {resultado(escolha_usuario, escolha_computador)}"
+        tela.fill((0, 0, 0))  # fundo preto
+
+        # Movimento flutuante (seno para cima/baixo)
+        y = y_base + math.sin(angulo) * 20
+        angulo += 0.05
+
+        rect = texto.get_rect(center=(x, y))
+        tela.blit(texto, rect)
 
         pygame.display.update()
+        clock.tick(60)
 
+# Exemplo de função que será chamada
+def iniciar_batalha():
+    print("Chamando a função de batalha...")
+
+# Uso da tela
+if __name__ == "__main__":
+    tela_texto_flutuante("Pressione ENTER para começar!", iniciar_batalha)

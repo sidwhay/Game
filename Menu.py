@@ -9,26 +9,27 @@ class Menu:
 
  def __init__(self,window):
      self.window = window
-     self.surf = pygame.image.load ("./assets/teste.png").convert_alpha()
+     self.surf = pygame.image.load ("./assets/bg0.png").convert_alpha()
      self.rect = self.surf.get_rect()
 
 
 
  def run(self):
     menu_option = 0
-    pygame.mixer.music.load('./Assets/bg.mp3')
+    pygame.mixer.music.load('./Assets/menu.mp3')
+    pygame.mixer.music.set_volume(0.1)
     pygame.mixer.music.play(-1)
     while True:
 
       self.window.blit(source=self.surf, dest=self.rect)
-      self.menu_text(50, "Teste", COLOR_BLACK, ((WIN_WIDTH / 2), 70))
+      self.menu_text(50, "Jankenpo", COLOR_BLACK, ((WIN_WIDTH / 2), 100))
 
 
       for i in range (len(MENU_OPTION)):
          if i == menu_option:
-             self.menu_text(50, MENU_OPTION[i], COLOR_BLACK, ((WIN_WIDTH / 2), 400 + 30 * i))
+             self.menu_text(50, MENU_OPTION[i], COLOR_BLACK, ((WIN_WIDTH / 2), 400 + 60 * i))
          else:
-              self.menu_text(50, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 400 + 30 * i))
+              self.menu_text(50, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2), 400 + 60 * i))
 
 
 

@@ -12,8 +12,6 @@ class Menu:
      self.surf = pygame.image.load ("./assets/bg0.png").convert_alpha()
      self.rect = self.surf.get_rect()
 
-
-
  def run(self):
     menu_option = 0
     pygame.mixer.music.load('./Assets/menu.mp3')

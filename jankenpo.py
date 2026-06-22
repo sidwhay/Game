@@ -78,9 +78,10 @@ def resultado(jogador, inimigo):
 chefe = Personagem("Janken, o Grande", "pedra")
 
 def rodada():
+    pygame.mixer.music.stop()
     pygame.mixer.music.load("./Assets/luta.mp3")
-    pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play()
+    pygame.mixer.music.set_volume(0.3)
     escolha_jogador = None
     escolha_inimigo = None
     resultado_final = None
@@ -90,7 +91,7 @@ def rodada():
 
     rodando = True
     while rodando:
-        tela.blit(fundo, (0, 0))  # desenha plano de fundo
+        tela.blit(fundo, (0, 0))
 
 
         tela.blit(personagem_jogador, (150, 533))

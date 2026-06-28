@@ -1,6 +1,8 @@
 import pygame
 import math
 
+from Const import COLOR_BLACK
+
 pygame.init()
 
 # Configurações da tela
@@ -9,10 +11,7 @@ tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("Texto Flutuante")
 
 def tela_texto_flutuante(mensagem: str, callback=None):
-    """
-    Exibe uma tela com texto flutuante.
-    Se o jogador apertar Enter, chama a função 'callback'.
-    """
+
     fonte = pygame.font.SysFont("arialblack", 60)
     texto = fonte.render(mensagem, True, (255, 255, 255))
 
@@ -30,13 +29,13 @@ def tela_texto_flutuante(mensagem: str, callback=None):
                 exit()
             elif evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_RETURN:
-                    if callback:   # se foi passada uma função
+                    if callback:
                         callback()
                     rodando = False
 
-        tela.fill((0, 0, 0))  # fundo preto
+        tela.fill(COLOR_BLACK)
 
-        # Movimento flutuante (seno para cima/baixo)
+
         y = y_base + math.sin(angulo) * 20
         angulo += 0.05
 
@@ -46,7 +45,7 @@ def tela_texto_flutuante(mensagem: str, callback=None):
         pygame.display.update()
         clock.tick(60)
 
-# Exemplo de função que será chamada
+
 def iniciar_batalha():
     print("Chamando a função de batalha...")
 

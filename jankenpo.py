@@ -130,8 +130,8 @@ def rodada():
 
 
         if resultado_final:
-            tela.blit(sprites[escolha_jogador], (300, 200))  # mão jogador
-            tela.blit(sprites[escolha_inimigo], (600, 200))  # mão inimigo
+            tela.blit(sprites[escolha_jogador], (300, 200))
+            tela.blit(sprites[escolha_inimigo], (600, 200))
             pygame.display.update()
             pygame.time.delay(1500)
             return resultado_final
